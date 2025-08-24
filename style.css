@@ -39,33 +39,21 @@ body {
 
   pointer-events: none;
   z-index: 0;
-  /* background: radial-gradient(
-            60% 50% at 65% 45%,
-            rgba(34, 139, 34, 0.25),
-            transparent 60%
-          ),
-          radial-gradient(
-            45% 40% at 30% 60%,
-            rgba(34, 139, 34, 0.18),
-            transparent 70%
-          ); */
-  background: url("/Images/Hero-Bg.png")
-    no-repeat bottom;
+
+  background: url("/Images/Hero-Bg.png") no-repeat top;
   /* transform: rotate(360deg); */
-  transform: scaleX(-1);
+  transform: rotate(180deg);
   background-size: 100% 90%;
   filter: blur(1px);
-  
   background-repeat: no-repeat;
-    animation: floatBG 3s ease-in-out infinite;
+  animation: floatBG 3s ease-in-out infinite;
 }
-
 
 @keyframes floatBG {
   0%,
   100% {
     /* Use 'translateY' to move the element vertically */
-    transform: translateY(0) ;
+    transform: translateY(0);
   }
   50% {
     transform: translate(-10px, -10px);
@@ -113,37 +101,36 @@ header {
   background: #111;
   display: inline-block;
 }
-nav{
+nav {
   background-color: hsla(0, 0%, 0%, 0.089);
   backdrop-filter: blur(20px);
   padding: 10px 20px;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
-  gap:1rem;
-
+  gap: 1rem;
 }
-nav a:first-child{
- background: rgba(255, 255, 255, 0.255);
+nav a:first-child {
+  background: rgba(255, 255, 255, 0.255);
 }
-
 
 nav a {
-
-opacity: 0.9;
+  opacity: 0.9;
   color: #000000;
   text-decoration: none;
   margin: 0 5px;
-   padding: 5px 20px;
+  padding: 5px 20px;
   font-size: 20px;
   border-radius: 50px;
   background: rgba(0, 0, 0, 0.02);
 }
 
-nav a:focus,a:hover,a:active {
+nav a:focus,
+a:hover,
+a:active {
   background: rgba(0, 0, 0, 0.1);
- 
- opacity: 1;
+
+  opacity: 1;
 }
 
 /* Hero */
@@ -171,27 +158,54 @@ nav a:focus,a:hover,a:active {
   font-size: 40px;
 }
 
-.copy .button_cta {
-  margin-top: 30px;
-  margin-left: 40px;
-  background-image: url("/Images/CTA-bg.png");
-  border: none;
-  font-weight: 700;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.button_cta {
+  position: relative;
   width: 350px;
   height: 100px;
+  margin-top: 30px;
+  margin-left: 40px;
+  border: none;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   filter: hue-rotate(343deg);
-  scale: 1.3;
-  a {
-    font-size: 25px;
-    color: var(--ink);
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4);
-    text-decoration: none;
+  transform: scale(1.3); /* corrected from scale: 1.3 */
+}
+
+.cta_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/Images/CTA-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: CTA-bg-flip 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+.cta_text {
+  position: relative;
+  z-index: 2;
+  font-size: 25px;
+  color: var(--ink);
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+}
+
+@keyframes CTA-bg-flip {
+  0%,
+  100% {
+    background-image: url("/Images/CTA-bg.png");
+    transform: translateX(0);
+  }
+  50% {
+    background-image: url("/Images/CTA-bg-flip.png");
+    transform: translateX(2px);
   }
 }
 
@@ -245,7 +259,6 @@ nav a:focus,a:hover,a:active {
   z-index: 10;
 }
 
-
 .float {
   position: relative;
   /* Size and shape */
@@ -258,7 +271,7 @@ nav a:focus,a:hover,a:active {
   pointer-events: auto; /* Re-enable pointer events for the elements themselves */
 
   /* Combined transform for both animation and base state */
-  transform: scale(1.3) rotate(0deg);
+  transform: scale(1.5) rotate(0deg);
 
   /* Background image properties */
   background-position: center;
@@ -269,7 +282,7 @@ nav a:focus,a:hover,a:active {
   -webkit-mask-image: url("https://png.pngtree.com/png-vector/20240129/ourmid/pngtree-empty-torn-white-paper-for-mockup-png-image_11513167.png");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-rotate: 10deg;
-box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -287,10 +300,10 @@ box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
   0%,
   100% {
     /* Use 'translateY' to move the element vertically */
-    transform: translate(0,1px) scale(1.2) ;
+    transform: translate(0, 1px) scale(1.2);
   }
   50% {
-    transform: translate(5px,-10px) scale(1.2) ;
+    transform: translate(5px, -10px) scale(1.2);
   }
 }
 
