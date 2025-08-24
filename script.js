@@ -1,3 +1,9 @@
+const stackContainer = document.querySelector(".stack");
+const floatWrapContainer = document.querySelector(".float-wrap");
+const loader = document.querySelector(".loader");
+const loadingBar = document.querySelector(".loading-copy .bar");
+
+
 const tattooImages = [
   {
     "title": "Hand Tattoo Pictures",
@@ -51,17 +57,10 @@ const tattooImages = [
   }
 ]
 
-
-
-
-
 let LOADER_TIME = 0;
-const stackContainer = document.querySelector(".stack");
-const floatWrapContainer = document.querySelector(".float-wrap");
 const totalImages = tattooImages.length;
 
-
-
+function initImageElements(){
 const originalElements = [];
 const startClones = [];
 const endClones = [];
@@ -147,13 +146,9 @@ originalElements.forEach(element => floatWrapContainer.appendChild(element));
 // 3. Clones for the end of the loop
 endClones.forEach(clone => floatWrapContainer.appendChild(clone));
 
+}
 
-
-console.log(document.querySelectorAll(".float"));
-// ===== Loader sequence =====
-const loader = document.querySelector(".loader");
-const cards = document.querySelectorAll(".stack .card");
-const loadingBar = document.querySelector(".loading-copy .bar");
+initImageElements();
 
 
 // Trigger the animation
@@ -165,34 +160,10 @@ setTimeout(() => {
 // Hide the loader after the animation completes
 setTimeout(() => {
   loader.classList.add("hide");
+animateInkTrail();
+
 }, LOADER_TIME);
 
-function loop(now) {
-  const dt = Math.max(0.001, (now - lastTime) / 1000);
-  lastTime = now;
-
-  // Speed from last to target
-  const dx = target.x - last.x,
-    dy = target.y - last.y;
-  const speed = Math.hypot(dx, dy) / Math.max(0.001, dt);
-  last.x = target.x;
-  last.y = target.y;
-
-  // Map speed to size/length
-  const stretch = Math.min(1.8, 0.8 + speed / 1400); // 0.8..1.8
-  const base = 8 / stretch; // shrink when fast
-
-  // follow with easing
-  let prev = target;
-  for (let i = 0; i < pts.length; i++) {
-    const p = pts[i];
-    const lerp = 0.25 - i * 0.007; // smaller for later segments
-    p.x += (prev.x - p.x) * Math.max(0.06, lerp);
-    p.y += (prev.y - p.y) * Math.max(0.06, lerp);
-    p.size = Math.max(2, base + (SEGMENTS - i) * 0.25);
-    prev = p;
-  }
-}
 
 const inkCanvas = document.getElementById("ink-canvas");
 const ctx = inkCanvas.getContext("2d");
@@ -200,63 +171,52 @@ let points = [];
 const maxPoints = 10;
 
 // Set canvas dimensions
-// function setCanvasSize() {
-//   inkCanvas.width = window.innerWidth;
-//   inkCanvas.height = window.innerHeight;
-// }
-// setCanvasSize();
-// window.addEventListener("resize", setCanvasSize);
+function setCanvasSize() {
+  inkCanvas.width = window.innerWidth;
+  inkCanvas.height = window.innerHeight;
+}
+setCanvasSize();
+window.addEventListener("resize", setCanvasSize);
 
-// // Handle mouse movement to add points to the trail
-// document.addEventListener("mousemove", (e) => {
-//   points.push({ x: e.x, y: e.y, alpha: 2, size: 25 });
-//   if (points.length > maxPoints) {
-//     points.shift();
-//   }
-// });
+// Handle mouse movement to add points to the trail
+document.addEventListener("mousemove", (e) => {
+  points.push({ x: e.x, y: e.y, alpha: 2, size: 25 });
+  if (points.length > maxPoints) {
+    points.shift();
+  }
+});
 
 
 
-// // Animation loop for the ink trail
-// function animateInkTrail() {
-//   ctx.clearRect(0, 0, inkCanvas.width, inkCanvas.height + 20);
+// Animation loop for the ink trail
+function animateInkTrail() {
+  ctx.clearRect(0, 0, inkCanvas.width, inkCanvas.height + 20);
 
-//   // Draw a continuous line connecting the points
-//   if (points.length > 1) {
-//     ctx.beginPath();
-//     ctx.moveTo(points[0].x, points[0].y);
-//     for (let i = 1; i < points.length; i++) {
-//       ctx.lineTo(points[i].x, points[i].y);
-//     }
-//     ctx.strokeStyle = `rgba(51, 51, 51, ${points[points.length - 1].alpha})`;
-//     ctx.lineWidth = points[points.length - 1].size;
-//     ctx.lineJoin = "bevel";
-//     ctx.lineCap = "round";
-//     ctx.stroke();
+  // Draw a continuous line connecting the points
+  if (points.length > 1) {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) {
+      ctx.lineTo(points[i].x, points[i].y);
+    }
+    ctx.strokeStyle = `rgba(51, 51, 51, ${points[points.length - 1].alpha})`;
+    ctx.lineWidth = points[points.length - 1].size;
+    ctx.lineJoin = "bevel";
+    ctx.lineCap = "round";
+    ctx.stroke();
  
-//   }
+  }
 
-//   // Update the points for fading and shrinking effect
-//   for (let i = 0; i < points.length; i++) {
-//     points[i].alpha -= 0.02; // Fading effect
-//     points[i].size *= 0.95; // Shrinking effect
-//   }
+  // Update the points for fading and shrinking effect
+  for (let i = 0; i < points.length; i++) {
+    points[i].alpha -= 0.02; // Fading effect
+    points[i].size *= 0.95; // Shrinking effect
+  }
 
-//   // Remove points that have faded away
-//   points = points.filter((p) => p.alpha > 0.05);
+  // Remove points that have faded away
+  points = points.filter((p) => p.alpha > 0.05);
 
-//   requestAnimationFrame(animateInkTrail);
-// }
-
-// // Start the animation
-// animateInkTrail();
+  requestAnimationFrame(animateInkTrail);
+}
 
 
-
-
-
-// Improve perf on scroll devices
-// document.addEventListener("visibilitychange", () => {
-//   cvs.style.opacity = document.hidden ? 0 : 1;
-//   animateInkTrail();
-// });

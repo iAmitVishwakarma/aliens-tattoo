@@ -85,15 +85,11 @@ header {
 }
 
 .brand {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
+  background-color: hsla(0, 0%, 0%, 0.089);
   /* Light frosted base */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px); /* Safari support */
-  border-radius: 12px;
+  border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
   /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); Depth */
   padding: 10px 20px;
@@ -117,43 +113,37 @@ header {
   background: #111;
   display: inline-block;
 }
-/* nav{
-  background-color: #0000002d;
-  backdrop-filter: blur(5px);
-  padding: 10px 20px;
-  border-radius: 10px;
-} */
-
-nav a {
-  background: linear-gradient(
-    135deg,
-    rgba(169, 164, 164, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
-  /* Light frosted base */
+nav{
+  background-color: hsla(0, 0%, 0%, 0.089);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); /* Safari support */
+  padding: 10px 20px;
   border-radius: 50px;
-  /* border: 1px solid rgba(255, 255, 255, 0.2); Soft border */
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); Depth */
-  padding: 7px 15px;
+  display: flex;
+  justify-content: space-between;
+  gap:1rem;
 
-  color: #000000;
-  text-decoration: none;
-  margin-left: 30px;
-  font-size: 20px;
-  opacity: 0.9;
-
-  &:hover {
-    transform: scale(1.03);
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.15);
-  }
+}
+nav a:first-child{
+ background: rgba(255, 255, 255, 0.255);
 }
 
-nav a:focus-visible {
-  outline: 2px dashed var(--deep);
-  outline-offset: 4px;
+
+nav a {
+
+opacity: 0.9;
+  color: #000000;
+  text-decoration: none;
+  margin: 0 5px;
+   padding: 5px 20px;
+  font-size: 20px;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+nav a:focus,a:hover,a:active {
+  background: rgba(0, 0, 0, 0.1);
+ 
+ opacity: 1;
 }
 
 /* Hero */
@@ -216,7 +206,7 @@ nav a:focus-visible {
   padding: 0 5%;
 
   span {
-    font-size: 12rem;
+    font-size: 14rem;
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -30px;
@@ -297,10 +287,10 @@ box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
   0%,
   100% {
     /* Use 'translateY' to move the element vertically */
-    transform: translateY(0) scale(1.2) rotate(-90deg);
+    transform: translate(0,1px) scale(1.2) ;
   }
   50% {
-    transform: translateY(-20px, -10px) scale(1.2) rotate(-90deg);
+    transform: translate(5px,-10px) scale(1.2) ;
   }
 }
 
