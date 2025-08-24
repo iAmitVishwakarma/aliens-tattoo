@@ -410,7 +410,7 @@ a:active {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -423,4 +423,4 @@ a:active {
   nav {
     display: none;
   }
-}
+} */
