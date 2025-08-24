@@ -84,14 +84,14 @@ tattooImages.forEach((image, index) => {
 
     card.innerHTML = `
       <a href="${image.url}" target="_blank">
-        <img src="${image.thumbnail}" alt="aliens tattoo - ${image.title}">
+        <img class="card-img"  src="${image.thumbnail}" alt="aliens tattoo - ${image.title}">
       </a>
     `;
 
     setTimeout(() => {
       document.querySelector(".stack").appendChild(card);
       card.classList.add("show");
-    }, index == 0 ? 10 : LOADER_TIME);
+    }, index == 0 ? 10 : LOADER_TIME );
 
 
 
