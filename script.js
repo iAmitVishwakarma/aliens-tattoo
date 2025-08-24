@@ -84,7 +84,7 @@ tattooImages.forEach((image, index) => {
 
     card.innerHTML = `
       <a href="${image.url}" target="_blank">
-        <img src="${image.thumbnail}" alt="${image.title}">
+        <img src="${image.thumbnail}" alt="aliens tattoo - ${image.title}">
       </a>
     `;
 
