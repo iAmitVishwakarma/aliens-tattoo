@@ -158,11 +158,7 @@ setTimeout(() => {
 }, 1); // slight delay to ensure DOM is ready
 
 // Hide the loader after the animation completes
-setTimeout(() => {
-  loader.classList.add("hide");
-animateInkTrail();
 
-}, LOADER_TIME);
 
 
 const inkCanvas = document.getElementById("ink-canvas");
@@ -220,3 +216,9 @@ function animateInkTrail() {
 }
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    loader.classList.add("hide");
+    animateInkTrail();
+  }, LOADER_TIME + 500); // Wait for loading animation to finish
+});
