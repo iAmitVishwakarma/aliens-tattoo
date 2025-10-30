@@ -216,6 +216,7 @@ function animateInkTrail() {
 }
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loader.classList.add("hide");
